@@ -22,18 +22,16 @@ jobs:
         - run: echo ${{ steps.day.outputs.day }}
 
         - name: Sprint 2 No PR period
-          if: steps.month.outputs.month == 11 && (steps.day.outputs.day == 23 || steps.day.outputs.day == 24) 
+          if: (steps.month.outputs.month == 11 && (steps.day.outputs.day == 23 || steps.day.outputs.day == 24)) && (steps.devops.outputs.devops != 'true')
           run: exit 1
         - name: Sprint 3 No PR period
-          if: steps.month.outputs.month == 12 && (steps.day.outputs.day == 11 || steps.day.outputs.day == 12)
+          if: (steps.month.outputs.month == 12 && (steps.day.outputs.day == 11 || steps.day.outputs.day == 12)) && (steps.devops.outputs.devops != 'true')
           run: exit 1
         - name: Sprint 4 No PR period
-          if: (steps.month.outputs.month == 10 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)) && (steps.devops.outputs.devops != 'true')
-          run: | 
-              echo ${{steps.devops.outputs.devops}}
-              exit 1
+          if: (steps.month.outputs.month == 12 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)) && (steps.devops.outputs.devops != 'true')
+          run: exit 1
         - name: Sprint 5 No PR period
-          if: steps.month.outputs.month == 1 && (steps.day.outputs.day == 22 || steps.day.outputs.day == 23)
+          if: (steps.month.outputs.month == 1 && (steps.day.outputs.day == 22 || steps.day.outputs.day == 23)) && (steps.devops.outputs.devops != 'true')
           run: exit 1
         
 
