@@ -17,8 +17,8 @@ jobs:
         - name: condition
           if: 1 == 1
           run: | 
-            - echo ${{ steps.month.outputs.month }} ${{ steps.day.outputs.day }}
-            - echo ${{ github.action }}
+            echo ${{ steps.month.outputs.month }} ${{ steps.day.outputs.day }}
+            echo ${{ github.actor }}
         - name: Check halloween
           if: steps.month.outputs.month == 9 && steps.day.outputs.day == 21
           run: exit 1
