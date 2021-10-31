@@ -14,6 +14,9 @@ jobs:
           run: echo "::set-output name=day::$(date +'%d')"
         - run: echo ${{ steps.month.outputs.month }}
         - run: echo ${{ steps.day.outputs.day }}
+        - name: Check halloween
+          if: ${{ steps.month.outputs.month }} == 10 && ${{ steps.day.outputs.day }} == 31
+          run: exit 1
         - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
         - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
         - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
