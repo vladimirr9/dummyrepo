@@ -9,9 +9,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Check if DevOps
-          id: DevOps
+          id: devops
           if: github.actor == 'vladimirr9' || github.actor == 'tara-pogancev' || github.actor == 'djordjekrsmanovic' || github.actor == 'zarkoblagojevic00'
-          run: exit 0
+          run: echo "::set-output name=devops::true"
         - name: Get current month
           id: month
           run: echo "::set-output name=month::$(date +'%m')"
@@ -22,13 +22,13 @@ jobs:
         - run: echo ${{ steps.day.outputs.day }}
 
         - name: Sprint 2 No PR period
-          if: steps.month.outputs.month == 11 && (steps.day.outputs.day == 23 || steps.day.outputs.day == 24)
+          if: steps.month.outputs.month == 11 && (steps.day.outputs.day == 23 || steps.day.outputs.day == 24) 
           run: exit 1
         - name: Sprint 3 No PR period
           if: steps.month.outputs.month == 12 && (steps.day.outputs.day == 11 || steps.day.outputs.day == 12)
           run: exit 1
         - name: Sprint 4 No PR period
-          if: steps.month.outputs.month == 10 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)
+          if: (steps.month.outputs.month == 10 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)) || (steps.devops.outputs.devops == 'true')
           run: exit 1
         - name: Sprint 5 No PR period
           if: steps.month.outputs.month == 1 && (steps.day.outputs.day == 22 || steps.day.outputs.day == 23)
