@@ -8,11 +8,12 @@ jobs:
       steps:
         - name: Get current month
           id: month
-          run: echo "::set-output name=month::$(date +'%Y-%m-%d')"
+          run: echo "::set-output name=month::$(date +'%m')"
         - name: Get current day
           id: day
-          run: echo "::set-output name=day::$(date +'%Y-%m-%d')"
+          run: echo "::set-output name=day::$(date +'%d')"
         - run: echo ${{ steps.month.outputs.month }}
+        - run: echo ${{ steps.day.outputs.day }}
         - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
         - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
         - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
