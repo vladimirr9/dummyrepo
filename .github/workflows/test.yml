@@ -28,7 +28,7 @@ jobs:
           if: steps.month.outputs.month == 12 && (steps.day.outputs.day == 11 || steps.day.outputs.day == 12)
           run: exit 1
         - name: Sprint 4 No PR period
-          if: (steps.month.outputs.month == 10 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)) || (steps.devops.outputs.devops == 'true')
+          if: (steps.month.outputs.month == 10 && (steps.day.outputs.day == 30 || steps.day.outputs.day == 31)) && (steps.devops.outputs.devops != 'true')
           run: | 
               echo ${{steps.devops.outputs.devops}}
               exit 1
