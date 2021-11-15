@@ -10,7 +10,7 @@ jobs:
       steps:
         - name: Check if DevOps
           id: devops
-          if: github.actor == 'vladimir9' || github.actor == 'tara-pogancev' || github.actor == 'djordjekrsmanovic' || github.actor == 'zarkoblagojevic00'
+          if: github.actor == 'vladimirr9' || github.actor == 'tara-pogancev' || github.actor == 'djordjekrsmanovic' || github.actor == 'zarkoblagojevic00'
           run: echo "::set-output name=devops::true"
         - name: Get current month
           id: month
