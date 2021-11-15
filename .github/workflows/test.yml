@@ -22,7 +22,7 @@ jobs:
         - run: echo ${{ steps.day.outputs.day }}
 
         - name: Sprint 2 No PR period
-          if: (steps.month.outputs.month == 11 && (steps.day.outputs.day == 15 || steps.day.outputs.day == 24)) && (steps.devops.outputs.devops != 'true')
+          if: (steps.month.outputs.month == 11 && (steps.day.outputs.day == 23 || steps.day.outputs.day == 24)) && (steps.devops.outputs.devops != 'true')
           run: exit 1
         - name: Sprint 3 No PR period
           if: (steps.month.outputs.month == 12 && (steps.day.outputs.day == 11 || steps.day.outputs.day == 12)) && (steps.devops.outputs.devops != 'true')
