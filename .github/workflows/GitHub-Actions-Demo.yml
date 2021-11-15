@@ -1,20 +1,37 @@
 name: GitHub Actions Demo
-on: 
-  pull_request:
-    type: opened
-    jobs:
-      Explore-GitHub-Actions:
-        runs-on: ubuntu-latest
-        steps:
-          - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-          - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-          - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-          - name: Check out repository code
-            uses: actions/checkout@v2
-          - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-          - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-          - name: List files in the repository
-            run: |
-              ls ${{ github.workspace }}
-          - run: echo "🍏 This job's status is ${{ job.status }}."
+on: pull_request_review_comment
+
+
+jobs:
+    Explore-GitHub-Actions:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Get current month
+          id: month
+          run: echo "::set-output name=month::$(date +'%m')"
+        - name: Get current day
+          id: day
+          run: echo "::set-output name=day::$(date +'%d')"
+        - run: echo ${{ steps.month.outputs.month }}
+        - run: echo ${{ steps.day.outputs.day }}
+        - name: condition
+          if: 1 == 1
+          run: | 
+            exit 0
+            echo ${{ steps.month.outputs.month }} ${{ steps.day.outputs.day }}
+            echo ${{ github.actor }}
+        - name: Check halloween
+          if: steps.month.outputs.month == 9 && steps.day.outputs.day == 21
+          run: exit 1
+        - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+        - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+        - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+        - name: Check out repository code
+          uses: actions/checkout@v2
+        - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+        - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+        - name: List files in the repository
+          run: |
+            ls ${{ github.workspace }}
+        - run: echo "🍏 This job's status is ${{ job.status }}."
 
