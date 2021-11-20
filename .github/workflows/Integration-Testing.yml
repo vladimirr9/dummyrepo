@@ -41,11 +41,11 @@ jobs:
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL table, populates
         # the table with data, and then retrieves the data
-        run: |
-          echo  '$(System.DefaultWorkingDirectory)'
-          cd PharmacyInformationSystem
-          echo  '$(System.DefaultWorkingDirectory)'
-          dotnet ef migrations add InitialCreate
+        run:
+          echo  '$(System.DefaultWorkingDirectory)';
+          cd PharmacyInformationSystem;
+          echo  '$(System.DefaultWorkingDirectory)';
+          dotnet ef migrations add InitialCreate;
         # Environment variables used by the `client.js` script to create
         # a new PostgreSQL table.
         env:
