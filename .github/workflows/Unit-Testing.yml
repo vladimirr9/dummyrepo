@@ -1,4 +1,4 @@
-name: dotnet package
+name: unit-testing
 
 on: [push]
 
