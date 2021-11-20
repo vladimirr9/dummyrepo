@@ -2,7 +2,7 @@ name: PostgreSQL Service Example
 on: push
 
 jobs:
-  runner-job:
+  Run-Integration-Tests:
     runs-on: ubuntu-latest
     env:
       SOLUTION_DIRECTORY: PharmacyInformationSystem
