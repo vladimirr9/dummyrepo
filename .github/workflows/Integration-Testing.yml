@@ -42,8 +42,8 @@ jobs:
         # Runs a script that creates a PostgreSQL table, populates
         # the table with data, and then retrieves the data
         run: |
-          - cd PharmacyInformationSystem
-          - dotnet ef migrations add InitialCreate
+          cd PharmacyInformationSystem
+          dotnet ef migrations add InitialCreate
         # Environment variables used by the `client.js` script to create
         # a new PostgreSQL table.
         env:
