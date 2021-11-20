@@ -2,23 +2,16 @@ name: PostgreSQL Service Example
 on: push
 
 jobs:
-  # Label of the runner job
   runner-job:
-    # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
     env:
       SOLUTION_DIRECTORY: PharmacyInformationSystem
       PROJECT_DIRECTORY: Pharmacy
-
-    # Service containers to run with `runner-job`
     services:
-      # Label used to access the service container
       postgres:
-        # Docker Hub image
         image: postgres
-        # Provide the password for postgres
         env:
-          POSTGRES_PASSWORD: pass
+          POSTGRES_PASSWORD: root
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
@@ -26,35 +19,26 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          # Maps tcp port 5432 on service container to the host
           - 5432:5432
 
     steps:
-      # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         uses: actions/checkout@v2
+
       - name: Install dotnet ef
         run: dotnet tool install --global dotnet-ef
 
-      # Performs a clean installation of all dependencies in the `package.json` file
-      # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install dependencies
         run: dotnet restore ${SOLUTION_DIRECTORY}
 
-      - name: Connect to PostgreSQL
-        # Runs a script that creates a PostgreSQL table, populates
-        # the table with data, and then retrieves the data
+      - name: Create Migrations
         run:
           dotnet ef migrations add InitialCreate --project ${SOLUTION_DIRECTORY}\/${PROJECT_DIRECTORY};
-        # Environment variables used by the `client.js` script to create
-        # a new PostgreSQL table.
       - name: Update Database
         run: dotnet ef database update --project ${SOLUTION_DIRECTORY}\/${PROJECT_DIRECTORY};
       - name: Test
         run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet
         env:
-          # The hostname used to communicate with the PostgreSQL service container
           POSTGRES_HOST: localhost
-          # The default PostgreSQL port
           POSTGRES_PORT: 5432
           POSTGRES_PASSWORD: pass
