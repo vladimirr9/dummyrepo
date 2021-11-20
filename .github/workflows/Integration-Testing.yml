@@ -45,6 +45,8 @@ jobs:
           dotnet ef migrations add InitialCreate --project PharmacyInformationSystem\/Pharmacy;
         # Environment variables used by the `client.js` script to create
         # a new PostgreSQL table.
+      - name: Update Database
+        run: dotnet ef database update --project PharmacyInformationSystem\/Pharmacy;
         env:
           # The hostname used to communicate with the PostgreSQL service container
           POSTGRES_HOST: localhost
