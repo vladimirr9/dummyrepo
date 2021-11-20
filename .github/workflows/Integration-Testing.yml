@@ -1,5 +1,7 @@
-name: PostgreSQL Service Example
-on: push
+name: integration-testing
+on:
+  pull_request:
+    branches: [develop, main]
 
 jobs:
   Run-Integration-Tests:
@@ -37,8 +39,8 @@ jobs:
       - name: Update Database
         run: dotnet ef database update --project ${SOLUTION_DIRECTORY}\/${PROJECT_DIRECTORY};
       - name: Test
-        run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet
+        run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet --filter FullyQualifiedName\!~IntegrationTests
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432
-          POSTGRES_PASSWORD: pass
+          POSTGRES_PASSWORD: root

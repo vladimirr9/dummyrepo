@@ -1,11 +1,15 @@
 name: unit-testing
-
-on: [push]
+on:
+  pull_request:
+    branches: [develop, main]
 
 jobs:
   Run-Unit-Tests:
 
     runs-on: ubuntu-latest
+    env:
+      SOLUTION_DIRECTORY: PharmacyInformationSystem
+      PROJECT_DIRECTORY: Pharmacy
     strategy:
       matrix:
         dotnet-version: ['5.0.x']
@@ -17,8 +21,8 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
-        run: dotnet restore PharmacyInformationSystem
+        run: dotnet restore ${SOLUTION_DIRECTORY}
       - name: Build
-        run: dotnet build PharmacyInformationSystem --configuration Release --no-restore
+        run: dotnet build ${SOLUTION_DIRECTORY} --configuration Release --no-restore
       - name: Test
-        run: dotnet test PharmacyInformationSystem --no-restore --verbosity normal --filter FullyQualifiedName\!~IntegrationTests
+        run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity normal --filter FullyQualifiedName\!~IntegrationTests
