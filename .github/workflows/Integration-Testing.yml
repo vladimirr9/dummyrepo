@@ -42,7 +42,7 @@ jobs:
         # Runs a script that creates a PostgreSQL table, populates
         # the table with data, and then retrieves the data
         run:
-          echo '$PWD';
+          echo '$(PWD)';
           cd PharmacyInformationSystem;
           echo '$PWD';
           dotnet ef migrations add InitialCreate;
