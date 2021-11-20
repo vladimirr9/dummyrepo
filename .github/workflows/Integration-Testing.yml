@@ -47,6 +47,8 @@ jobs:
         # a new PostgreSQL table.
       - name: Update Database
         run: dotnet ef database update --project PharmacyInformationSystem\/Pharmacy;
+      - name: Test
+        run: dotnet test PharmacyInformationSystem --no-restore --verbosity normal
         env:
           # The hostname used to communicate with the PostgreSQL service container
           POSTGRES_HOST: localhost
