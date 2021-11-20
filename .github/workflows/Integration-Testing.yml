@@ -36,22 +36,23 @@ jobs:
       # Performs a clean installation of all dependencies in the `package.json` file
       # For more information, see https://docs.npmjs.com/cli/ci.html
       - name: Install dependencies
-        run: dotnet restore PharmacyInformationSystem
+        run: dotnet restore ${SOLUTION_DIRECTORY}
 
       - name: Connect to PostgreSQL
         # Runs a script that creates a PostgreSQL table, populates
         # the table with data, and then retrieves the data
         run:
-          dotnet ef migrations add InitialCreate --project PharmacyInformationSystem\/Pharmacy;
+          dotnet ef migrations add InitialCreate --project ${SOLUTION_DIRECTORY}\/Pharmacy;
         # Environment variables used by the `client.js` script to create
         # a new PostgreSQL table.
       - name: Update Database
-        run: dotnet ef database update --project PharmacyInformationSystem\/Pharmacy;
+        run: dotnet ef database update --project ${SOLUTION_DIRECTORY}\/Pharmacy;
       - name: Test
-        run: dotnet test PharmacyInformationSystem --no-restore --verbosity quiet
+        run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet
         env:
           # The hostname used to communicate with the PostgreSQL service container
           POSTGRES_HOST: localhost
           # The default PostgreSQL port
           POSTGRES_PORT: 5432
           POSTGRES_PASSWORD: pass
+          SOLUTION_DIRECTORY: PharmacyInformationSystem
