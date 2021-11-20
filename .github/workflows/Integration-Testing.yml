@@ -6,6 +6,8 @@ jobs:
   runner-job:
     # You must use a Linux environment when using service containers or container jobs
     runs-on: ubuntu-latest
+    env:
+      SOLUTION_DIRECTORY: PharmacyInformationSystem
 
     # Service containers to run with `runner-job`
     services:
@@ -55,4 +57,3 @@ jobs:
           # The default PostgreSQL port
           POSTGRES_PORT: 5432
           POSTGRES_PASSWORD: pass
-          SOLUTION_DIRECTORY: PharmacyInformationSystem
