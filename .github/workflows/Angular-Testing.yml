@@ -1,7 +1,9 @@
-name: Angular Testing
-on: push
+name: testing
+on:
+  pull_request:
+    branches: [develop, main]
 jobs:
-  build:
+  Run-Tests:
     runs-on: ubuntu-latest
     env:
       PROJECT_DIRECTORY: manager-application
@@ -12,7 +14,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - name: Setup
+      - name: Setup dependencies
         working-directory: ${{env.PROJECT_DIRECTORY}}
         run: npm ci
 
