@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: wasd
+          POSTGRES_PASSWORD: root
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
