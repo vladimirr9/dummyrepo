@@ -3,6 +3,8 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PROJECT_DIRECTORY: manager-application
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 14.x
@@ -11,10 +13,10 @@ jobs:
           node-version: 14.x
 
       - name: Setup
-        working-directory: ./manager-application
+        working-directory: ./${PROJECT_DIRECTORY}
         run: npm ci
 
       - name: Test
-        working-directory: ./manager-application
+        working-directory: ./${PROJECT_DIRECTORY}
         run: |
           npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
