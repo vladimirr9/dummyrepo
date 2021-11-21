@@ -11,6 +11,7 @@ jobs:
           node-version: 14.x
 
       - name: Setup
+        working-directory: ./manager-application
         run: npm ci
 
       - name: Test
