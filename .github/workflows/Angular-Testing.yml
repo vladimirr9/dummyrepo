@@ -13,10 +13,10 @@ jobs:
           node-version: 14.x
 
       - name: Setup
-        working-directory: ${PROJECT_DIRECTORY}
+        working-directory: ${{env.PROJECT_DIRECTORY}}
         run: npm ci
 
       - name: Test
-        working-directory: ./${PROJECT_DIRECTORY}
+        working-directory: ${{env.PROJECT_DIRECTORY}}
         run: |
           npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
