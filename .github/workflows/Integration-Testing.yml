@@ -21,7 +21,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 8080:8080
+          - 5431:5431
 
     steps:
       - name: Check out repository code
@@ -42,5 +42,5 @@ jobs:
         run: dotnet test ${SOLUTION_DIRECTORY} --no-restore --verbosity quiet --filter FullyQualifiedName\!~UnitTests
         env:
           POSTGRES_HOST: localhost
-          POSTGRES_PORT: 8080
-          POSTGRES_PASSWORD: wasd
+          POSTGRES_PORT: 5431
+          POSTGRES_PASSWORD: root
