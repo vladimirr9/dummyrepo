@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Feedbacks\**" />
+    <Compile Remove="MedicalRecords\Service\**" />
+    <Compile Remove="RoomsAndEquipment\Service\**" />
+    <EmbeddedResource Remove="Feedbacks\**" />
+    <EmbeddedResource Remove="MedicalRecords\Service\**" />
+    <EmbeddedResource Remove="RoomsAndEquipment\Service\**" />
+    <None Remove="Feedbacks\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GraphicalEditor\**" />
+    <EmbeddedResource Remove="GraphicalEditor\**" />
+    <None Remove="GraphicalEditor\**" />
+    <None Remove="MedicalRecords\Service\**" />
+    <None Remove="RoomsAndEquipment\Service\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.11" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql" Version="5.0.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+  </ItemGroup>
+
+</Project>
