@@ -1,0 +1,10 @@
+name: Call Reusable CI
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  call-workflow:
+    uses: vladimirr9/dummyrepo/.github/workflows/my-callable-workflow@main
