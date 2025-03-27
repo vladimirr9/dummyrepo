@@ -7,4 +7,4 @@ on:
 
 jobs:
   call-workflow:
-    uses: vladimirr9/dummyrepo/.github/workflows/my-callable-workflow@main
+    uses: vladimirr9/dummyrepo/.github/workflows/my-callable-workflow.yml@085d6e186375a55d3ec95c759d29efe854700ea6
